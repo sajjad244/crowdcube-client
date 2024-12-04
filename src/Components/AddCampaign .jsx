@@ -1,13 +1,61 @@
-import React from "react";
+import Swal from "sweetalert2";
 
 const AddCampaign = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const title = form.title.value;
+    const type = form.type.value;
+    const imageURL = form.imageURL.value;
+    const description = form.description.value;
+    const deadline = form.deadline.value;
+    const minDonation = form.minDonation.value;
+    const name = form.name.value;
+    const email = form.email.value;
+
+    const newCampaign = {
+      title,
+      type,
+      imageURL,
+      description,
+      deadline,
+      minDonation,
+      name,
+      email,
+    };
+
+    console.log(newCampaign);
+
+    // send data to the server
+    fetch("http://localhost:5000/addCampaign", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCampaign),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Campaign Added Successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-10 bg-custom-gradient shadow-md rounded-lg mt-16 ">
       <h1 className="text-3xl font-bold mb-6 text-gray-600">
         Add New Campaign
       </h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Image/Thumbnail */}
         <div className="mb-4">
           <label className="block text-gray-700 font-medium">
@@ -91,8 +139,8 @@ const AddCampaign = () => {
           <input
             type="email"
             name="email"
-            value="user@example.com" // Replace with the logged-in user's email
-            readOnly
+            // value="user@example.com" // Replace with the logged-in user's email
+            // readOnly
             className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
           />
         </div>
@@ -103,8 +151,8 @@ const AddCampaign = () => {
           <input
             type="text"
             name="name"
-            value="John Doe" // Replace with the logged-in user's name
-            readOnly
+            // value="John Doe" // Replace with the logged-in user's name
+            // readOnly
             className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
           />
         </div>
