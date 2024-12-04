@@ -10,12 +10,11 @@ const AddCampaign = () => {
       <form>
         {/* Image/Thumbnail */}
         <div className="mb-4">
-          <label htmlFor="imageURL" className="block text-gray-700 font-medium">
+          <label className="block text-gray-700 font-medium">
             Campaign Image/Thumbnail
           </label>
           <input
             type="url"
-            id="imageURL"
             name="imageURL"
             placeholder="Enter Image URL"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -24,7 +23,7 @@ const AddCampaign = () => {
 
         {/* Campaign Title */}
         <div className="mb-4">
-          <label htmlFor="title" className="block text-gray-700 font-medium">
+          <label className="block text-gray-700 font-medium">
             Campaign Title
           </label>
           <input
@@ -38,11 +37,10 @@ const AddCampaign = () => {
 
         {/* Campaign Type */}
         <div className="mb-4">
-          <label htmlFor="type" className="block text-gray-700 font-medium">
+          <label className="block text-gray-700 font-medium">
             Campaign Type
           </label>
           <select
-            id="type"
             name="type"
             className="w-full p-2 border border-gray-300 rounded-md"
           >
@@ -55,14 +53,8 @@ const AddCampaign = () => {
 
         {/* Description */}
         <div className="mb-4">
-          <label
-            htmlFor="description"
-            className="block text-gray-700 font-medium"
-          >
-            Description
-          </label>
+          <label className="block text-gray-700 font-medium">Description</label>
           <textarea
-            id="description"
             name="description"
             rows="4"
             placeholder="Enter Campaign Description"
@@ -72,15 +64,11 @@ const AddCampaign = () => {
 
         {/* Minimum Donation Amount */}
         <div className="mb-4">
-          <label
-            htmlFor="minDonation"
-            className="block text-gray-700 font-medium"
-          >
+          <label className="block text-gray-700 font-medium">
             Minimum Donation Amount
           </label>
           <input
             type="number"
-            id="minDonation"
             name="minDonation"
             placeholder="Enter Minimum Donation Amount"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -89,12 +77,9 @@ const AddCampaign = () => {
 
         {/* Deadline */}
         <div className="mb-4">
-          <label htmlFor="deadline" className="block text-gray-700 font-medium">
-            Deadline
-          </label>
+          <label className="block text-gray-700 font-medium">Deadline</label>
           <input
             type="date"
-            id="deadline"
             name="deadline"
             className="w-full p-2 border border-gray-300 rounded-md"
           />
@@ -102,12 +87,9 @@ const AddCampaign = () => {
 
         {/* User Email (Read Only) */}
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-medium">
-            User Email
-          </label>
+          <label className="block text-gray-700 font-medium">User Email</label>
           <input
             type="email"
-            id="email"
             name="email"
             value="user@example.com" // Replace with the logged-in user's email
             readOnly
@@ -117,12 +99,9 @@ const AddCampaign = () => {
 
         {/* User Name (Read Only) */}
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 font-medium">
-            User Name
-          </label>
+          <label className="block text-gray-700 font-medium">User Name</label>
           <input
             type="text"
-            id="name"
             name="name"
             value="John Doe" // Replace with the logged-in user's name
             readOnly
