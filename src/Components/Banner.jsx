@@ -2,28 +2,25 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full min-h-screen">
+    <div className="carousel w-full min-h-[500px]">
       {/* Slide 1 */}
       <div id="slide1" className="carousel-item relative w-full">
         <div className="hero bg-gradient-to-r from-teal-400 to-blue-500 w-full">
-          <div className="hero-content flex-col lg:flex-row-reverse p-8">
+          <div className="flex gap-10 md:gap-32 items-center flex-col lg:flex-row-reverse p-8 ">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+              src="https://i.ibb.co.com/p2fwJGc/Idea-Generation-1.webp"
               className="max-w-md rounded-lg shadow-2xl object-cover"
               alt="Creative Ideas"
             />
             <div className="text-center lg:text-left text-white space-y-4">
-              <h1 className="text-4xl font-semibold">
+              <h1 className="text-4xl font-bold text-gray-700">
                 Support Innovative Ideas
               </h1>
-              <p className="py-4 text-lg">
-                Contribute to creative ideas and make a difference in the world.
-                Crowdfunding allows you to bring ideas to life, whether it's for
-                a new product, art, or a social cause.
+              <p className="py-4  text-gray-700 ">
+                Contribute to creative ideas and make a <br /> difference in the
+                world. Crowdfunding allows you to bring ideas to life, <br />
+                whether it's for a new product, art, or a social cause.
               </p>
-              <button className="btn btn-primary text-lg py-3 px-6">
-                Learn More
-              </button>
             </div>
           </div>
         </div>
@@ -40,22 +37,21 @@ const Banner = () => {
       {/* Slide 2 */}
       <div id="slide2" className="carousel-item relative w-full">
         <div className="hero bg-gradient-to-r from-yellow-400 to-orange-500 w-full">
-          <div className="hero-content flex-col lg:flex-row-reverse p-8">
+          <div className="flex gap-10 md:gap-32 items-center flex-col lg:flex-row-reverse p-8">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+              src="https://i.ibb.co.com/PCsTp0s/getty-491381689-970664970450081-54146.jpg"
               className="max-w-md rounded-lg shadow-2xl object-cover"
               alt="Support Local Startups"
             />
             <div className="text-center lg:text-left text-white space-y-4">
-              <h1 className="text-4xl font-semibold">Support Local Startups</h1>
-              <p className="py-4 text-lg">
-                Help local entrepreneurs bring their business ideas to life. By
-                supporting startups, you contribute to innovation and economic
-                growth.
+              <h1 className="text-4xl font-bold  text-gray-700">
+                Support Local Startups
+              </h1>
+              <p className="py-4 text-lg  text-gray-600">
+                Help local entrepreneurs bring their business ideas to life.{" "}
+                <br /> By supporting startups, you contribute to innovation and
+                economic growth.
               </p>
-              <button className="btn btn-primary text-lg py-3 px-6">
-                Support Now
-              </button>
             </div>
           </div>
         </div>
@@ -72,23 +68,21 @@ const Banner = () => {
       {/* Slide 3 */}
       <div id="slide3" className="carousel-item relative w-full">
         <div className="hero bg-gradient-to-r from-purple-600 to-pink-500 w-full">
-          <div className="hero-content flex-col lg:flex-row-reverse p-8">
+          <div className="flex gap-10 md:gap-32 items-center flex-col lg:flex-row-reverse p-8">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+              src="https://i.ibb.co.com/tB04bBq/maxresdefault.jpg"
               className="max-w-md rounded-lg shadow-2xl object-cover"
               alt="Fund Future Innovations"
             />
             <div className="text-center lg:text-left text-white space-y-4">
-              <h1 className="text-4xl font-semibold">
+              <h1 className="text-4xl font-bold  text-gray-700">
                 Fund Future Innovations
               </h1>
-              <p className="py-4 text-lg">
-                Be part of groundbreaking innovations. Your contributions help
+              <p className="py-4 text-lg  text-gray-800">
+                Be part of groundbreaking innovations. Your contributions help{" "}
+                <br />
                 shape the future of technology, science, and creativity.
               </p>
-              <button className="btn btn-primary text-lg py-3 px-6">
-                Join Now
-              </button>
             </div>
           </div>
         </div>

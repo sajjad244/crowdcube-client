@@ -23,7 +23,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-custom-gradient">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -44,25 +44,27 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-custom-gradient text-white rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
         </div>
         <Link
           to="/"
-          className="btn btn-ghost text-2xl text-green-600 font-extrabold"
+          className="btn btn-ghost text-2xl text-gray-600 font-extrabold"
         >
           <i>Crowdcube</i>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 font-semibold text-green-600">
+        <ul className="menu menu-horizontal px-1 font-semibold text-gray-700">
           {links}
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn btn-ghost font-serif text-lg">Login</Link>
+        <Link to="login" className="btn btn-ghost font-serif text-lg">
+          Login
+        </Link>
       </div>
     </div>
   );

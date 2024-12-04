@@ -6,7 +6,7 @@ import SuccessStories from "../Components/Extra_Section/SuccessStories";
 
 const Home = () => {
   return (
-    <div>
+    <div className="mt-10 bg-custom-gradient">
       {/* banner */}
       <Banner></Banner>
       {/* Running Campaign */}
