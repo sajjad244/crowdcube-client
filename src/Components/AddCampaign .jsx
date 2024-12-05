@@ -27,7 +27,7 @@ const AddCampaign = () => {
 
     console.log(newCampaign);
 
-    // send data to the server
+    // send data to the server post method
     fetch("http://localhost:5000/addCampaign", {
       method: "POST",
       headers: {
