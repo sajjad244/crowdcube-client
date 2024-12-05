@@ -3,16 +3,18 @@ import Footer from "../Components/Footer/Footer";
 import Banner from "../Components/Banner";
 import HowItWorks from "../Components/Extra_Section/HowItWorks";
 import SuccessStories from "../Components/Extra_Section/SuccessStories";
+import RunningCampaign from "../assets/RunningCampaign";
+import {useLoaderData} from "react-router-dom";
 
 const Home = () => {
+  const allCampaigns = useLoaderData();
+
   return (
     <div className="mt-10 bg-custom-gradient">
       {/* banner */}
       <Banner></Banner>
       {/* Running Campaign */}
-      <h1 className="text-5xl font-bold text-center mt-20">
-        Running Campaign Section will be added soon a new components
-      </h1>
+      <RunningCampaign allCampaigns={allCampaigns}></RunningCampaign>
 
       <div className="divider w-9/12 mx-auto my-20"></div>
       {/* extra-1 */}

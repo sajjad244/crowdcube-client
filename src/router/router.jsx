@@ -6,6 +6,7 @@ import Home from "../Pages/Home";
 import LoginForm from "../Pages/Login&Register/LoginForm ";
 import RegisterForm from "../Pages/Login&Register/RegisterForm";
 import AddCampaign from "../Components/AddCampaign ";
+import DetailsPage from "../Pages/DetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/campaigns"),
       },
       {
         path: "/addCampaign",
@@ -33,6 +35,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterForm></RegisterForm>,
+      },
+      {
+        path: "/view/:id",
+        element: <DetailsPage></DetailsPage>,
+        loader: () => fetch("http://localhost:5000/campaigns"),
       },
     ],
   },
