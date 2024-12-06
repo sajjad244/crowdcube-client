@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Link, NavLink} from "react-router-dom";
+import {AuthContext} from "../../Layouts/AuthProvider";
 
 const Navbar = () => {
+  const {user, logout} = useContext(AuthContext);
+
   const links = (
     <>
       <li>
@@ -62,8 +65,34 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="login" className="btn btn-ghost font-serif text-lg">
-          Login
+        {user && user?.email ? (
+          <div className="flex items-center gap-2">
+            <div className="relative group">
+              <img
+                className="w-10 h-10 rounded-full cursor-pointer hover:shadow-lg hover:scale-110 transition-transform duration-300"
+                src={user?.photoURL}
+                alt="User Avatar"
+              />
+              {/* Tooltip */}
+              <span className="absolute left-1/2 transform -translate-x-1/2  bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {user?.displayName}
+              </span>
+            </div>
+            <button
+              onClick={logout}
+              className="btn btn-ghost font-serif text-lg"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link to="login" className="btn btn-ghost font-serif text-lg">
+            Login
+          </Link>
+        )}
+        {/* register button */}
+        <Link to="/register" className="btn btn-ghost font-serif text-lg">
+          Register
         </Link>
       </div>
     </div>

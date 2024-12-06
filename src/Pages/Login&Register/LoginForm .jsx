@@ -1,14 +1,47 @@
-import React from "react";
+import React, {useContext} from "react";
 import {FaGoogle} from "react-icons/fa6";
-import {Link} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../Layouts/AuthProvider";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
+  const {login, setUser, googleLogIn} = useContext(AuthContext);
+
+  //! for navigate path
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(location?.state || "/");
+        toast.success(`Welcome ! You have successfully logged in.`);
+      })
+      .catch((err) => {
+        toast.error(`Google Login Failed: ${err.message}`);
+      });
+  };
+
+  // ! google login
+
+  const handleGoogleLogin = () => {
+    googleLogIn()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(location?.state || "/");
+        toast.success(`Welcome ! You have successfully logged in.`);
+      })
+      .catch((err) => {
+        toast.error(`Google Login Failed: ${err.message}`);
+      });
   };
 
   return (
@@ -49,6 +82,7 @@ const LoginForm = () => {
           {/* Google Login */}
           <div className="mb-4">
             <button
+              onClick={handleGoogleLogin}
               type="button"
               className="w-full bg-green-500 hover:bg-red-600 text-white py-2 rounded-md focus:outline-none focus:ring focus:ring-red-300"
             >

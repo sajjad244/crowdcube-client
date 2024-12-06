@@ -1,21 +1,39 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useContext} from "react";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../Layouts/AuthProvider";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
+  const {createUser, setUser, updateUserProfile} = useContext(AuthContext);
+
+  //! for navigate path
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photoURL = form.photoURL.value;
-    const user = {
-      name,
-      email,
-      photoURL,
-    };
+    const password = form.password.value;
 
-    console.log(user);
+    // ! create new user
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        // updating profile
+        updateUserProfile({displayName: name, photoURL: photoURL})
+          .then(() => {
+            navigate("/");
+          })
+          .catch((err) => {
+            alert(err.code);
+          });
+        toast.success("Thank you! For your Registration");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
