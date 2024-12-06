@@ -91,9 +91,12 @@ const Navbar = () => {
           </Link>
         )}
         {/* register button */}
-        <Link to="/register" className="btn btn-ghost font-serif text-lg">
-          Register
-        </Link>
+
+        {user && user?.email ? null : (
+          <Link to="/register" className="btn btn-ghost font-serif text-lg">
+            Register
+          </Link>
+        )}
       </div>
     </div>
   );

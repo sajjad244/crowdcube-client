@@ -22,11 +22,14 @@ const LoginForm = () => {
         const user = result.user;
         setUser(user);
         navigate(location?.state || "/");
-        toast.success(`Welcome ! You have successfully logged in.`);
+        toast.success(`Welcome successfully logged in.`);
       })
       .catch((err) => {
-        toast.error(`Google Login Failed: ${err.message}`);
+        toast.error(
+          `Login Failed !!! If you are new user please register first : ${err.message}`
+        );
       });
+    form.reset();
   };
 
   // ! google login
@@ -37,7 +40,7 @@ const LoginForm = () => {
         const user = result.user;
         setUser(user);
         navigate(location?.state || "/");
-        toast.success(`Welcome ! You have successfully logged in.`);
+        toast.success(`Welcome successfully logged in.`);
       })
       .catch((err) => {
         toast.error(`Google Login Failed: ${err.message}`);

@@ -1,6 +1,9 @@
 import Swal from "sweetalert2";
+import {AuthContext} from "../Layouts/AuthProvider";
+import {useContext} from "react";
 
 const AddCampaign = () => {
+  const {user} = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -45,6 +48,7 @@ const AddCampaign = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          form.reset();
         }
       });
   };
@@ -64,6 +68,7 @@ const AddCampaign = () => {
           <input
             type="url"
             name="imageURL"
+            required
             placeholder="Enter Image URL"
             className="w-full p-2 border border-gray-300 rounded-md"
           />
@@ -76,7 +81,7 @@ const AddCampaign = () => {
           </label>
           <input
             type="text"
-            id="title"
+            required
             name="title"
             placeholder="Enter Campaign Title"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -118,6 +123,7 @@ const AddCampaign = () => {
           <input
             type="number"
             name="minDonation"
+            required
             placeholder="Enter Minimum Donation Amount"
             className="w-full p-2 border border-gray-300 rounded-md"
           />
@@ -129,6 +135,7 @@ const AddCampaign = () => {
           <input
             type="date"
             name="deadline"
+            required
             className="w-full p-2 border border-gray-300 rounded-md"
           />
         </div>
@@ -139,8 +146,8 @@ const AddCampaign = () => {
           <input
             type="email"
             name="email"
-            // value="user@example.com" // Replace with the logged-in user's email
-            // readOnly
+            defaultValue={user?.email || ""}
+            readOnly
             className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
           />
         </div>
@@ -151,8 +158,8 @@ const AddCampaign = () => {
           <input
             type="text"
             name="name"
-            // value="John Doe" // Replace with the logged-in user's name
-            // readOnly
+            defaultValue={user?.displayName || ""}
+            readOnly
             className="w-full p-2 border border-gray-300 rounded-md bg-gray-200"
           />
         </div>
