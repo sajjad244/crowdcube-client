@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../Layouts/AuthProvider";
 import toast from "react-hot-toast";
@@ -6,8 +6,10 @@ import toast from "react-hot-toast";
 const RegisterForm = () => {
   const {createUser, setUser, updateUserProfile} = useContext(AuthContext);
 
-  //! for navigate path
+  //? for navigate path
   const navigate = useNavigate();
+  // ? set error
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +18,19 @@ const RegisterForm = () => {
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
+
+    // ? testing password
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        toast.error(
+          "Password must have at least 6 characters, including uppercase and lowercase letters."
+        )
+      );
+      return;
+    } else {
+      setError("");
+    }
 
     // ! create new user
 
