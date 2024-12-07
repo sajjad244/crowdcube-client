@@ -56,7 +56,9 @@ const Navbar = () => {
           to="/"
           className="btn btn-ghost text-2xl text-gray-600 font-extrabold"
         >
-          <i>Crowdcube</i>
+          <i>
+            <span className="text-orange-500">Crowd</span>cube
+          </i>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

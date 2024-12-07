@@ -15,7 +15,6 @@ const Home = () => {
       <Banner></Banner>
       {/* Running Campaign */}
       <RunningCampaign allCampaigns={allCampaigns}></RunningCampaign>
-
       <div className="divider w-9/12 mx-auto my-20"></div>
       {/* extra-1 */}
       <HowItWorks></HowItWorks>

@@ -7,6 +7,7 @@ import LoginForm from "../Pages/Login&Register/LoginForm ";
 import RegisterForm from "../Pages/Login&Register/RegisterForm";
 import AddCampaign from "../Components/AddCampaign ";
 import DetailsPage from "../Pages/DetailsPage";
+import PrivetRoutes from "./PrivetRoutes";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addCampaign",
-        element: <AddCampaign></AddCampaign>,
+        element: (
+          <PrivetRoutes>
+            <AddCampaign></AddCampaign>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "/allCampaigns",
@@ -38,7 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/view/:id",
-        element: <DetailsPage></DetailsPage>,
+        element: (
+          <PrivetRoutes>
+            <DetailsPage></DetailsPage>
+          </PrivetRoutes>
+        ),
         loader: () => fetch("http://localhost:5000/campaigns"),
       },
     ],

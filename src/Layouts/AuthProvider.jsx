@@ -59,6 +59,7 @@ const AuthProvider = ({children}) => {
     login,
     googleLogIn,
     updateUserProfile,
+    loading,
   };
 
   // ! for holding user data reload issues
@@ -66,7 +67,7 @@ const AuthProvider = ({children}) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-
+      setLoading(false);
       return () => {
         unsubscribe();
       };
