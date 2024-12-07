@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD5baVWSMJkfn3-YWnBEvTT-Jq3FH1o4hc",
-    authDomain: "crowdcube-project-4af20.firebaseapp.com",
-    projectId: "crowdcube-project-4af20",
-    storageBucket: "crowdcube-project-4af20.firebasestorage.app",
-    messagingSenderId: "337013334341",
-    appId: "1:337013334341:web:d0bf75907b63e63b829e2c"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
