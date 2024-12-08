@@ -4,7 +4,7 @@ import {AuthContext} from "../../Layouts/AuthProvider";
 import toast from "react-hot-toast";
 
 const RegisterForm = () => {
-  const {createUser, setUser, updateUserProfile} = useContext(AuthContext);
+  const {createNewUser, setUser, updateUserProfile} = useContext(AuthContext);
 
   //? for navigate path
   const navigate = useNavigate();
@@ -34,11 +34,31 @@ const RegisterForm = () => {
 
     // ! create new user
 
-    createUser(email, password)
+    createNewUser(email, password)
       .then((result) => {
         const user = result.user;
         setUser(user);
-        // updating profile
+
+        // ? send data to server site_-
+        const newUser = {
+          name: name,
+          email: email,
+          photoURL: photoURL,
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("user created db", data);
+          });
+        // ? send data to server site _-
+
+        //! updating profile
         updateUserProfile({displayName: name, photoURL: photoURL})
           .then(() => {
             navigate("/");

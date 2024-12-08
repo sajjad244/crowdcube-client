@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Link, useLoaderData, useParams} from "react-router-dom";
+import {AuthContext} from "../Layouts/AuthProvider";
 
 const DetailsPage = () => {
   const campaign = useLoaderData();
+  const {user} = useContext(AuthContext);
   const {id} = useParams();
   const data = campaign.find((item) => item._id == id);
   const {
@@ -16,6 +18,29 @@ const DetailsPage = () => {
     email,
     _id,
   } = data;
+
+  // ? User Information from Context {firebase}
+  const userName = user.displayName;
+  const userEmail = user.email;
+
+  // ! sending data to the server for donation
+
+  const handleDonate = () => {
+    const donate = {
+      userName,
+      userEmail,
+      campaignId: _id,
+      campaignTitle: title,
+      campaignType: type,
+      campaignImage: imageURL,
+      campaignDescription: description,
+      campaignDeadline: deadline,
+      campaignMinDonation: minDonation,
+      campaignName: name,
+      campaignEmail: email,
+    };
+    console.log(donate);
+  };
 
   return (
     <div className="card w-2/3 bg-base-100 shadow-xl mx-auto p-10 mt-10">
@@ -52,7 +77,11 @@ const DetailsPage = () => {
 
         {/* See More Button */}
         <div className="card-actions justify-end mt-4">
-          <Link to={"/"} className="btn btn-primary btn-sm">
+          <Link
+            to={"/"}
+            onClick={handleDonate}
+            className="btn btn-primary btn-sm"
+          >
             Donate
           </Link>
         </div>

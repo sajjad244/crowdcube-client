@@ -8,6 +8,7 @@ import RegisterForm from "../Pages/Login&Register/RegisterForm";
 import AddCampaign from "../Components/AddCampaign ";
 import DetailsPage from "../Pages/DetailsPage";
 import PrivetRoutes from "./PrivetRoutes";
+import MyCampaign from "../Components/MyCampaign";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterForm></RegisterForm>,
+      },
+      {
+        path: "/myCampaign",
+        element: (
+          <PrivetRoutes>
+            <MyCampaign></MyCampaign>
+          </PrivetRoutes>
+        ),
       },
       {
         path: "/view/:id",

@@ -28,8 +28,6 @@ const AddCampaign = () => {
       email,
     };
 
-    console.log(newCampaign);
-
     // send data to the server post method
     fetch("http://localhost:5000/addCampaign", {
       method: "POST",
@@ -40,7 +38,6 @@ const AddCampaign = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.insertedId) {
           Swal.fire({
             icon: "success",

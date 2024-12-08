@@ -13,8 +13,6 @@ const AllCampaign = () => {
     }
   }, [allCampaigns]);
 
-  console.log(sortedCampaigns);
-
   const submit = () => {
     const sorted = [...sortedCampaigns].sort(
       (a, b) => b.minDonation - a.minDonation
