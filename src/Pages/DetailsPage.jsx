@@ -7,28 +7,19 @@ const DetailsPage = () => {
   const {user} = useContext(AuthContext);
   const {id} = useParams();
   const data = campaign.find((item) => item._id == id);
-  const {
-    title,
-    type,
-    imageURL,
-    description,
-    deadline,
-    minDonation,
-    name,
-    email,
-    _id,
-  } = data;
+  const {title, type, imageURL, description, deadline, minDonation, name, _id} =
+    data;
 
   // ? User Information from Context {firebase}
   const userName = user.displayName;
-  const userEmail = user.email;
+  const email = user.email;
 
   // ! sending data to the server for donation
 
   const handleDonate = () => {
     const donate = {
       userName,
-      userEmail,
+      email: email,
       campaignId: _id,
       campaignTitle: title,
       campaignType: type,
@@ -37,9 +28,23 @@ const DetailsPage = () => {
       campaignDeadline: deadline,
       campaignMinDonation: minDonation,
       campaignName: name,
-      campaignEmail: email,
+      campaignEmail: data.email,
     };
-    console.log(donate);
+
+    // ? send data to server site_-
+
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(donate),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("user created db", data);
+      });
+    // ? send data to server site _-
   };
 
   return (
@@ -71,7 +76,8 @@ const DetailsPage = () => {
             <span className="text-gray-500">Created By:</span> {name}
           </p>
           <p className="font-semibold">
-            <span className="text-gray-500">Email:</span> {email}
+            <span className="text-gray-500">Email:</span>
+            {data.email || "No Email"}
           </p>
         </div>
 

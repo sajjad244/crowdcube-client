@@ -9,6 +9,7 @@ import AddCampaign from "../Components/AddCampaign ";
 import DetailsPage from "../Pages/DetailsPage";
 import PrivetRoutes from "./PrivetRoutes";
 import MyCampaign from "../Components/MyCampaign";
+import MyDonation from "../Components/MyDonation";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,16 @@ const router = createBrowserRouter([
             <MyCampaign></MyCampaign>
           </PrivetRoutes>
         ),
+        loader: () => fetch("http://localhost:5000/users"),
+      },
+      {
+        path: "/myDonations",
+        element: (
+          <PrivetRoutes>
+            <MyDonation></MyDonation>
+          </PrivetRoutes>
+        ),
+        loader: () => fetch("http://localhost:5000/users"),
       },
       {
         path: "/view/:id",

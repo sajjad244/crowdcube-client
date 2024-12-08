@@ -40,22 +40,22 @@ const RegisterForm = () => {
         setUser(user);
 
         // ? send data to server site_-
-        const newUser = {
-          name: name,
-          email: email,
-          photoURL: photoURL,
-        };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("user created db", data);
-          });
+        // const newUser = {
+        //   name: name,
+        //   email: email,
+        //   photoURL: photoURL,
+        // };
+        // fetch("http://localhost:5000/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "content-type": "application/json",
+        //   },
+        //   body: JSON.stringify(newUser),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log("user created db", data);
+        //   });
         // ? send data to server site _-
 
         //! updating profile
