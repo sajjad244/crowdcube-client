@@ -5,3 +5,35 @@
 a.active {
   font-weight: bold;
 }
+
+/* TailwindCSS Theme Config */
+[data-theme="light"] {
+  --bg-color: #f5f5f5;
+  --text-color: #000;
+}
+
+[data-theme="dark"] {
+  --bg-color: #333333;
+  --text-color: #fff;
+}
+
+[data-theme="blue"] {
+  --bg-color: #1e40af;
+  --text-color: #fff;
+}
+
+[data-theme="green"] {
+  --bg-color: #10b981;
+  --text-color: #fff;
+}
+
+[data-theme="red"] {
+  --bg-color: #ef4444;
+  --text-color: #fff;
+}
+
+/* Apply the theme colors to your layout */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

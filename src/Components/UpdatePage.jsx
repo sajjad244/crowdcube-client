@@ -1,63 +1,50 @@
-import Swal from "sweetalert2";
+import React, {useContext, useState} from "react";
 import {AuthContext} from "../Layouts/AuthProvider";
-import {useContext} from "react";
+import {useLoaderData, useParams} from "react-router-dom";
+import Swal from "sweetalert2";
 
-const AddCampaign = () => {
+const UpdatePage = () => {
   const {user} = useContext(AuthContext);
+  const {id} = useParams();
+  const singleData = useLoaderData();
+
+  console.log(singleData);
+
+  const [title, setTitle] = useState(singleData?.title);
+  const [imageURL, setImageURL] = useState(singleData?.imageURL);
+  const [description, setDescription] = useState(singleData?.description);
+  const [type, setType] = useState(singleData?.type);
+  const [minDonation, setMinDonation] = useState(singleData?.minDonation);
+  const [deadline, setDeadline] = useState(singleData?.deadline);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const form = e.target;
-    const title = form.title.value;
-    const type = form.type.value;
-    const imageURL = form.imageURL.value;
-    const description = form.description.value;
-    const deadline = form.deadline.value;
-    const minDonation = form.minDonation.value;
-    const name = form.name.value;
-    const email = form.email.value;
-
-    console.log(user);
-
-    const newCampaign = {
-      title,
-      type,
-      imageURL,
-      description,
-      deadline,
-      minDonation,
-      name,
-      email,
+    const updatedData = {
+      title: title,
+      imageURL: imageURL,
+      description: description,
+      type: type,
+      minDonation: minDonation,
+      deadline: deadline,
     };
 
-    //! send data to the server post method
-    fetch("http://localhost:5000/addCampaign", {
-      method: "POST",
+    fetch(`http://localhost:5000/myCampaigns/${id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newCampaign),
+      body: JSON.stringify(updatedData),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          Swal.fire({
-            icon: "success",
-            title: "Campaign Added Successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          form.reset();
-        }
+
+      .then((result) => {
+        Swal.fire("data-updated");
       });
   };
 
   return (
     <div className="max-w-4xl mx-auto p-10 bg-custom-gradient shadow-md rounded-lg mt-16 ">
-      <h1 className="text-3xl font-bold mb-6 text-gray-600">
-        Add New Campaign
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-600">Update Campaign</h1>
 
       <form onSubmit={handleSubmit}>
         {/* Image/Thumbnail */}
@@ -68,6 +55,8 @@ const AddCampaign = () => {
           <input
             type="url"
             name="imageURL"
+            value={imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
             required
             placeholder="Enter Image URL"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -83,6 +72,8 @@ const AddCampaign = () => {
             type="text"
             required
             name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Campaign Title"
             className="w-full p-2 border border-gray-300 rounded-md"
           />
@@ -95,6 +86,8 @@ const AddCampaign = () => {
           </label>
           <select
             name="type"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md"
           >
             <option value="personal">Personal Issue</option>
@@ -109,6 +102,8 @@ const AddCampaign = () => {
           <label className="block text-gray-700 font-medium">Description</label>
           <textarea
             name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             rows="4"
             placeholder="Enter Campaign Description"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -122,6 +117,8 @@ const AddCampaign = () => {
           </label>
           <input
             type="number"
+            value={minDonation}
+            onChange={(e) => setMinDonation(e.target.value)}
             name="minDonation"
             required
             placeholder="Enter Minimum Donation Amount"
@@ -135,6 +132,8 @@ const AddCampaign = () => {
           <input
             type="date"
             name="deadline"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
             required
             className="w-full p-2 border border-gray-300 rounded-md"
           />
@@ -178,4 +177,4 @@ const AddCampaign = () => {
   );
 };
 
-export default AddCampaign;
+export default UpdatePage;

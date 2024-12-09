@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLoaderData} from "react-router-dom";
+import {Link, NavLink, useLoaderData} from "react-router-dom";
 
 const AllCampaign = () => {
   const allCampaigns = useLoaderData();
+
+  console.log(allCampaigns);
 
   // ! for sorting
   const [sortedCampaigns, setSortedCampaigns] = useState([]);
@@ -22,7 +24,7 @@ const AllCampaign = () => {
   // ! for sorting
 
   return (
-    <div className="bg-custom-gradient p-10">
+    <div className="bg-custom-gradient h-screen p-10">
       <h1 className="text-3xl font-bold text-center mt-5 text-gray-700">
         <i>Current Campaigns ({allCampaigns.length})</i>
       </h1>
@@ -70,12 +72,12 @@ const AllCampaign = () => {
                   {new Date(campaign.deadline).toLocaleDateString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-2 text-center">
-                  <Link
+                  <NavLink
                     to={`/view/${campaign._id}`}
                     className="btn bg-purple-900 border-none text-white hover:bg-fuchsia-800"
                   >
                     See More
-                  </Link>
+                  </NavLink>
                 </td>
               </tr>
             ))}

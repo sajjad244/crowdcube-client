@@ -11,29 +11,29 @@ const DetailsPage = () => {
     data;
 
   // ? User Information from Context {firebase}
-  const userName = user.displayName;
-  const email = user.email;
+  // const userName = user.displayName;
+  // const email = user.email;
 
   // ! sending data to the server for donation
 
   const handleDonate = () => {
     const donate = {
-      userName,
-      email: email,
-      campaignId: _id,
-      campaignTitle: title,
-      campaignType: type,
-      campaignImage: imageURL,
-      campaignDescription: description,
-      campaignDeadline: deadline,
-      campaignMinDonation: minDonation,
-      campaignName: name,
-      campaignEmail: data.email,
+      userName: user.displayName,
+      email: user.email,
+      title,
+      type,
+      deadline,
+      imageURL,
+      minDonation,
+      name,
+      description,
     };
+
+    console.log(donate);
 
     // ? send data to server site_-
 
-    fetch("http://localhost:5000/users", {
+    fetch("http://localhost:5000/donations", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,10 +41,7 @@ const DetailsPage = () => {
       body: JSON.stringify(donate),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log("user created db", data);
-      });
-    // ? send data to server site _-
+      .then((data) => console.log("donation added in db", data));
   };
 
   return (
@@ -83,13 +80,9 @@ const DetailsPage = () => {
 
         {/* See More Button */}
         <div className="card-actions justify-end mt-4">
-          <Link
-            to={"/"}
-            onClick={handleDonate}
-            className="btn btn-primary btn-sm"
-          >
+          <button onClick={handleDonate} className="btn btn-primary btn-sm">
             Donate
-          </Link>
+          </button>
         </div>
       </div>
     </div>

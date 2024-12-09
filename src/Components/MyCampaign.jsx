@@ -1,16 +1,15 @@
 import React, {useContext, useState} from "react";
-import {useLoaderData} from "react-router-dom";
+import {Link, NavLink, useLoaderData} from "react-router-dom";
 import {AuthContext} from "../Layouts/AuthProvider";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const MyCampaign = () => {
-  const loadedUsers = useLoaderData();
-  const [authEmail, setAuthEmail] = useState(loadedUsers);
+  const data = useLoaderData();
+  const [loadedUsers, setLoadedUser] = useState(data);
+
   const {user} = useContext(AuthContext);
-  const userCampaigns = authEmail.filter(
-    (item) => item.email !== user.campaignEmail
-  );
+
+  // ! eikhane fetch kora lgbe email wise tar por fetch korte hobe
 
   // ! delete user from database for myCampaigns
 
@@ -25,7 +24,8 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
+        console.log("Deleting ID:", id);
+        fetch(`http://localhost:5000/myCampaigns/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -36,12 +36,13 @@ const MyCampaign = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              const remainingUsers = authEmail.filter(
-                (item) => item._id !== id
+              const remainingUsers = loadedUsers.filter(
+                (user) => user._id !== id
               );
-              setAuthEmail(remainingUsers);
+              setLoadedUser(remainingUsers);
             }
-          });
+          })
+          .catch((error) => console.error(error));
       }
     });
   };
@@ -50,7 +51,7 @@ const MyCampaign = () => {
     <div className="min-h-screen">
       <div className="mt-10 mx-auto">
         <h1 className="text-center text-xl font-bold">
-          {userCampaigns.length} Campaigns Found
+          {loadedUsers.length} Campaigns Found
         </h1>
         <table className="table mx-auto w-3/4 border-collapse border border-gray-400 mt-6">
           {/* Table Head */}
@@ -65,24 +66,27 @@ const MyCampaign = () => {
           </thead>
           {/* Table Body */}
           <tbody>
-            {userCampaigns.map((campaign, index) => (
+            {loadedUsers.map((campaign, index) => (
               <tr key={campaign._id} className="hover:bg-gray-400">
                 <td className="border border-gray-400 px-4 py-2">
                   {index + 1}
                 </td>
                 <td className="border border-gray-400 px-4 py-2">
-                  {campaign.campaignTitle}
+                  {campaign.title}
                 </td>
                 <td className="border border-gray-400 px-4 py-2 capitalize">
-                  {campaign.campaignType}
+                  {campaign.type}
                 </td>
                 <td className="border border-gray-400 px-4 py-2">
-                  {campaign.campaignEmail}
+                  {campaign.email}
                 </td>
                 <td className="border border-gray-400 px-4 py-2 flex gap-2">
-                  <button className="btn btn-sm bg-purple-500 border-none">
+                  <Link
+                    to={`/updateCampaign/${campaign._id}`}
+                    className="btn btn-sm bg-purple-500 border-none"
+                  >
                     Update
-                  </button>
+                  </Link>
                   <button
                     onClick={() => handleUserDelete(campaign._id)}
                     className="btn btn-sm bg-red-500 border-none"

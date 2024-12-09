@@ -10,6 +10,7 @@ import DetailsPage from "../Pages/DetailsPage";
 import PrivetRoutes from "./PrivetRoutes";
 import MyCampaign from "../Components/MyCampaign";
 import MyDonation from "../Components/MyDonation";
+import UpdatePage from "../Components/UpdatePage";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/campaigns"),
+        loader: () => fetch("http://localhost:5000/donations"),
       },
       {
         path: "/addCampaign",
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allCampaigns",
         element: <AllCampaign></AllCampaign>,
-        loader: () => fetch("http://localhost:5000/campaigns"),
+        loader: () => fetch("http://localhost:5000/donations"),
       },
       {
         path: "/login",
@@ -44,13 +45,32 @@ const router = createBrowserRouter([
         element: <RegisterForm></RegisterForm>,
       },
       {
+        path: "/view/:id",
+        element: (
+          <PrivetRoutes>
+            <DetailsPage></DetailsPage>
+          </PrivetRoutes>
+        ),
+        loader: () => fetch("http://localhost:5000/donations"),
+      },
+      {
         path: "/myCampaign",
         element: (
           <PrivetRoutes>
             <MyCampaign></MyCampaign>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () => fetch("http://localhost:5000/myCampaigns"),
+      },
+      {
+        path: "/updateCampaign/:id",
+        element: (
+          <PrivetRoutes>
+            <UpdatePage></UpdatePage>
+          </PrivetRoutes>
+        ),
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/myCampaigns/${params.id}`),
       },
       {
         path: "/myDonations",
@@ -59,16 +79,7 @@ const router = createBrowserRouter([
             <MyDonation></MyDonation>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/users"),
-      },
-      {
-        path: "/view/:id",
-        element: (
-          <PrivetRoutes>
-            <DetailsPage></DetailsPage>
-          </PrivetRoutes>
-        ),
-        loader: () => fetch("http://localhost:5000/campaigns"),
+        loader: () => fetch("http://localhost:5000/donations"),
       },
     ],
   },
