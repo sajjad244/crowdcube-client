@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import {AuthContext} from "../../Layouts/AuthProvider";
 import {FaMoon, FaSun} from "react-icons/fa";
+import {Typewriter} from "react-simple-typewriter";
 
 const Navbar = () => {
   const {user, logout} = useContext(AuthContext);
@@ -71,8 +72,28 @@ const Navbar = () => {
           className="btn btn-ghost text-2xl text-gray-600 font-extrabold"
         >
           <i>
-            <span className="text-orange-500">Crowd</span>cube
+            <span className="text-orange-500">
+              <Typewriter
+                words={["Crowd"]}
+                loop={false}
+                typeSpeed={100}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </span>
+            <span>
+              <Typewriter
+                words={["cube"]}
+                loop={false}
+                typeSpeed={50}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+            </span>
           </i>
+          {/*  */}
+          <i></i>
+          {/*  */}
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
