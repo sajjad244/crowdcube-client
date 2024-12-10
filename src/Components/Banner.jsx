@@ -46,15 +46,21 @@ const Banner = () => {
       <div id="slide2" className="carousel-item relative w-full">
         <div className="hero bg-gradient-to-r from-yellow-400 to-orange-500 w-full">
           <div className="flex gap-10 md:gap-32 items-center flex-col lg:flex-row-reverse p-8">
-            <img
-              src="https://i.ibb.co.com/PCsTp0s/getty-491381689-970664970450081-54146.jpg"
-              className="max-w-md rounded-lg shadow-2xl object-cover"
-              alt="Support Local Startups"
-            />
+            <Slide direction="right" duration={1000}>
+              <img
+                src="https://i.ibb.co.com/PCsTp0s/getty-491381689-970664970450081-54146.jpg"
+                className="max-w-md rounded-lg shadow-2xl object-cover"
+                alt="Support Local Startups"
+              />
+            </Slide>
             <div className="text-center lg:text-left text-white space-y-4">
-              <h1 className="text-4xl font-bold  text-gray-700">
-                Support Local Startups
-              </h1>
+              <Fade duration={2500}>
+                {" "}
+                <h1 className="text-4xl font-bold  text-gray-700">
+                  Support Local Startups
+                </h1>{" "}
+              </Fade>
+
               <p className="py-4 text-lg  text-gray-600">
                 Help local entrepreneurs bring their business ideas to life.{" "}
                 <br /> By supporting startups, you contribute to innovation and
@@ -77,15 +83,22 @@ const Banner = () => {
       <div id="slide3" className="carousel-item relative w-full">
         <div className="hero bg-gradient-to-r from-purple-600 to-pink-500 w-full">
           <div className="flex gap-10 md:gap-32 items-center flex-col lg:flex-row-reverse p-8">
-            <img
-              src="https://i.ibb.co.com/tB04bBq/maxresdefault.jpg"
-              className="max-w-md rounded-lg shadow-2xl object-cover"
-              alt="Fund Future Innovations"
-            />
+            <Slide direction="left" duration={1000}>
+              <img
+                src="https://i.ibb.co.com/tB04bBq/maxresdefault.jpg"
+                className="max-w-md rounded-lg shadow-2xl object-cover"
+                alt="Fund Future Innovations"
+              />{" "}
+            </Slide>
+
             <div className="text-center lg:text-left text-white space-y-4">
-              <h1 className="text-4xl font-bold  text-gray-700">
-                Fund Future Innovations
-              </h1>
+              <Fade duration={1500}>
+                {" "}
+                <h1 className="text-4xl font-bold  text-gray-700">
+                  Fund Future Innovations
+                </h1>{" "}
+              </Fade>
+
               <p className="py-4 text-lg  text-gray-800">
                 Be part of groundbreaking innovations. Your contributions help{" "}
                 <br />

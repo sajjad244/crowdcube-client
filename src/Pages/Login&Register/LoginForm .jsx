@@ -20,10 +20,17 @@ const LoginForm = () => {
     login(email, password)
       .then((result) => {
         const user = result.user;
-
-        console.log(user);
-
         setUser(user);
+        // update user in database
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+
+        const loginInfo = {
+          email,
+          lastSignInTime,
+        };
+
+        fetch(`http://localhost:5000/users/${email}`);
+
         navigate(location?.state || "/");
         toast.success(`Welcome successfully logged in.`);
       })

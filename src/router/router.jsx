@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/donations"),
+        loader: () => fetch("http://localhost:5000/myCampaigns"),
       },
       {
         path: "/addCampaign",
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allCampaigns",
         element: <AllCampaign></AllCampaign>,
-        loader: () => fetch("http://localhost:5000/donations"),
+        loader: () => fetch("http://localhost:5000/myCampaigns"),
       },
       {
         path: "/login",
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             <DetailsPage></DetailsPage>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/donations"),
+        loader: () => fetch("http://localhost:5000/myCampaigns"),
       },
       {
         path: "/myCampaign",
@@ -60,7 +60,8 @@ const router = createBrowserRouter([
             <MyCampaign></MyCampaign>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/myCampaigns"),
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/myCampaigns/${params.email}`),
       },
       {
         path: "/updateCampaign/:id",
@@ -79,7 +80,8 @@ const router = createBrowserRouter([
             <MyDonation></MyDonation>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/donations"),
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/donations/${params.email}`),
       },
     ],
   },

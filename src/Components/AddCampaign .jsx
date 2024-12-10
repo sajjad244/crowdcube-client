@@ -18,8 +18,6 @@ const AddCampaign = () => {
     const name = form.name.value;
     const email = form.email.value;
 
-    console.log(user);
-
     const newCampaign = {
       title,
       type,
@@ -29,6 +27,7 @@ const AddCampaign = () => {
       minDonation,
       name,
       email,
+      isComplete: false,
     };
 
     //! send data to the server post method

@@ -4,8 +4,6 @@ import {Link, NavLink, useLoaderData} from "react-router-dom";
 const AllCampaign = () => {
   const allCampaigns = useLoaderData();
 
-  console.log(allCampaigns);
-
   // ! for sorting
   const [sortedCampaigns, setSortedCampaigns] = useState([]);
 

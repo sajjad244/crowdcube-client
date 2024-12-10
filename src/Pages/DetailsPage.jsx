@@ -7,12 +7,16 @@ const DetailsPage = () => {
   const {user} = useContext(AuthContext);
   const {id} = useParams();
   const data = campaign.find((item) => item._id == id);
-  const {title, type, imageURL, description, deadline, minDonation, name, _id} =
-    data;
-
-  // ? User Information from Context {firebase}
-  // const userName = user.displayName;
-  // const email = user.email;
+  const {
+    title,
+    type,
+    imageURL,
+    description,
+    deadline,
+    minDonation,
+    name,
+    isComplete,
+  } = data;
 
   // ! sending data to the server for donation
 
@@ -28,8 +32,6 @@ const DetailsPage = () => {
       name,
       description,
     };
-
-    console.log(donate);
 
     // ? send data to server site_-
 

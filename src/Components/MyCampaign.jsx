@@ -1,15 +1,23 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Link, NavLink, useLoaderData} from "react-router-dom";
 import {AuthContext} from "../Layouts/AuthProvider";
 import Swal from "sweetalert2";
 
 const MyCampaign = () => {
-  const data = useLoaderData();
-  const [loadedUsers, setLoadedUser] = useState(data);
-
   const {user} = useContext(AuthContext);
+  const [loadedCampaigns, setLoadedCampaigns] = useState([]);
 
   // ! eikhane fetch kora lgbe email wise tar por fetch korte hobe
+
+  useEffect(() => {
+    // Fetch campaigns for the logged-in user
+    if (user?.email) {
+      fetch(`http://localhost:5000/myCampaigns/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setLoadedCampaigns(data))
+        .catch((error) => console.error(error));
+    }
+  }, [user?.email]);
 
   // ! delete user from database for myCampaigns
 
@@ -24,7 +32,6 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("Deleting ID:", id);
         fetch(`http://localhost:5000/myCampaigns/${id}`, {
           method: "DELETE",
         })
@@ -36,10 +43,10 @@ const MyCampaign = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              const remainingUsers = loadedUsers.filter(
+              const remainingUsers = loadedCampaigns.filter(
                 (user) => user._id !== id
               );
-              setLoadedUser(remainingUsers);
+              setLoadedCampaigns(remainingUsers);
             }
           })
           .catch((error) => console.error(error));
@@ -51,7 +58,7 @@ const MyCampaign = () => {
     <div className="min-h-screen">
       <div className="mt-10 mx-auto">
         <h1 className="text-center text-xl font-bold">
-          {loadedUsers.length} Campaigns Found
+          {loadedCampaigns.length} Campaigns Found
         </h1>
         <table className="table mx-auto w-3/4 border-collapse border border-gray-400 mt-6">
           {/* Table Head */}
@@ -60,13 +67,13 @@ const MyCampaign = () => {
               <th className="border border-gray-400 px-4 py-2">ID</th>
               <th className="border border-gray-400 px-4 py-2">Title</th>
               <th className="border border-gray-400 px-4 py-2">Type</th>
-              <th className="border border-gray-400 px-4 py-2">Email</th>
+              <th className="border border-gray-400 px-4 py-2">Min-Donation</th>
               <th className="border border-gray-400 px-4 py-2">Actions</th>
             </tr>
           </thead>
           {/* Table Body */}
           <tbody>
-            {loadedUsers.map((campaign, index) => (
+            {loadedCampaigns.map((campaign, index) => (
               <tr key={campaign._id} className="hover:bg-gray-400">
                 <td className="border border-gray-400 px-4 py-2">
                   {index + 1}
@@ -77,8 +84,8 @@ const MyCampaign = () => {
                 <td className="border border-gray-400 px-4 py-2 capitalize">
                   {campaign.type}
                 </td>
-                <td className="border border-gray-400 px-4 py-2">
-                  {campaign.email}
+                <td className="border border-gray-400 px-4 py-2 font-semibold ">
+                  $ {campaign.minDonation}
                 </td>
                 <td className="border border-gray-400 px-4 py-2 flex gap-2">
                   <Link

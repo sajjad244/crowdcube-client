@@ -8,8 +8,6 @@ const UpdatePage = () => {
   const {id} = useParams();
   const singleData = useLoaderData();
 
-  console.log(singleData);
-
   const [title, setTitle] = useState(singleData?.title);
   const [imageURL, setImageURL] = useState(singleData?.imageURL);
   const [description, setDescription] = useState(singleData?.description);
@@ -55,7 +53,7 @@ const UpdatePage = () => {
           <input
             type="url"
             name="imageURL"
-            value={imageURL}
+            defaultValue={imageURL}
             onChange={(e) => setImageURL(e.target.value)}
             required
             placeholder="Enter Image URL"
@@ -72,7 +70,7 @@ const UpdatePage = () => {
             type="text"
             required
             name="title"
-            value={title}
+            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Campaign Title"
             className="w-full p-2 border border-gray-300 rounded-md"
@@ -86,7 +84,7 @@ const UpdatePage = () => {
           </label>
           <select
             name="type"
-            value={type}
+            defaultValue={type}
             onChange={(e) => setType(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md"
           >
@@ -102,7 +100,7 @@ const UpdatePage = () => {
           <label className="block text-gray-700 font-medium">Description</label>
           <textarea
             name="description"
-            value={description}
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
             rows="4"
             placeholder="Enter Campaign Description"
@@ -117,7 +115,7 @@ const UpdatePage = () => {
           </label>
           <input
             type="number"
-            value={minDonation}
+            defaultValue={minDonation}
             onChange={(e) => setMinDonation(e.target.value)}
             name="minDonation"
             required
@@ -132,7 +130,7 @@ const UpdatePage = () => {
           <input
             type="date"
             name="deadline"
-            value={deadline}
+            defaultValue={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             required
             className="w-full p-2 border border-gray-300 rounded-md"
