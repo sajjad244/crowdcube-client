@@ -22,7 +22,7 @@ const AllCampaign = () => {
   // ! for sorting
 
   return (
-    <div className="bg-custom-gradient h-screen p-10">
+    <div className="bg-custom-gradient min-h-screen p-10">
       <h1 className="text-3xl font-bold text-center mt-5 text-gray-700">
         <i>Current Campaigns ({allCampaigns.length})</i>
       </h1>
