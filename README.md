@@ -12,7 +12,7 @@ This project aims to provide a user-friendly and secure way to fundraise, promot
 
 You can view the live version of the Crowdcube application here:
 
-[Live Demo](https://your-live-link.com)
+[Live Demo](https://crowdcube-project-4af20.web.app/)
 
 ---
 

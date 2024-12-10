@@ -35,7 +35,7 @@ const DetailsPage = () => {
 
     // ? send data to server site_-
 
-    fetch("http://localhost:5000/donations", {
+    fetch("https://assignment-10-server-pink-two.vercel.app/donations", {
       method: "POST",
       headers: {
         "content-type": "application/json",

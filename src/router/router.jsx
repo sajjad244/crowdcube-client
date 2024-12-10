@@ -21,7 +21,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/myCampaigns"),
+        loader: () =>
+          fetch("https://assignment-10-server-pink-two.vercel.app/myCampaigns"),
       },
       {
         path: "/addCampaign",
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
       {
         path: "/allCampaigns",
         element: <AllCampaign></AllCampaign>,
-        loader: () => fetch("http://localhost:5000/myCampaigns"),
+        loader: () =>
+          fetch("https://assignment-10-server-pink-two.vercel.app/myCampaigns"),
       },
       {
         path: "/login",
@@ -51,7 +53,8 @@ const router = createBrowserRouter([
             <DetailsPage></DetailsPage>
           </PrivetRoutes>
         ),
-        loader: () => fetch("http://localhost:5000/myCampaigns"),
+        loader: () =>
+          fetch("https://assignment-10-server-pink-two.vercel.app/myCampaigns"),
       },
       {
         path: "/myCampaign",
@@ -61,7 +64,9 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: ({params}) =>
-          fetch(`http://localhost:5000/myCampaigns/${params.email}`),
+          fetch(
+            `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${params.email}`
+          ),
       },
       {
         path: "/updateCampaign/:id",
@@ -71,7 +76,9 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: ({params}) =>
-          fetch(`http://localhost:5000/myCampaigns/${params.id}`),
+          fetch(
+            `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${params.id}`
+          ),
       },
       {
         path: "/myDonations",
@@ -81,7 +88,9 @@ const router = createBrowserRouter([
           </PrivetRoutes>
         ),
         loader: ({params}) =>
-          fetch(`http://localhost:5000/donations/${params.email}`),
+          fetch(
+            `https://assignment-10-server-pink-two.vercel.app/donations/${params.email}`
+          ),
       },
     ],
   },
