@@ -17,7 +17,7 @@ const Banner = () => {
             </Rotate>
             <div className="text-center lg:text-left text-white space-y-4">
               <Slide direction="left" duration={1000}>
-                <h1 className="text-4xl font-bold text-gray-700">
+                <h1 className="text-2xl md:text-4xl font-bold text-gray-700">
                   Support Innovative Ideas
                 </h1>
               </Slide>
