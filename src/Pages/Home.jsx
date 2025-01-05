@@ -10,12 +10,12 @@ const Home = () => {
   const allCampaigns = useLoaderData();
 
   return (
-    <div className="mt-10 bg-custom-gradient">
+    <div className="mt-10 ">
       {/* banner */}
       <Banner></Banner>
       {/* Running Campaign */}
       <RunningCampaign allCampaigns={allCampaigns}></RunningCampaign>
-      <div className="divider w-9/12 mx-auto my-20"></div>
+      <div className="divider w-9/12 mx-auto mt-10"></div>
       {/* extra-1 */}
       <HowItWorks></HowItWorks>
       {/* extra-2 */}

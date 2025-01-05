@@ -5,10 +5,10 @@ import {Toaster} from "react-hot-toast";
 
 const MainLayout = () => {
   return (
-    <div className="bg-custom-gradient">
+    <div className="">
       <Toaster />
       {/* header */}
-      <header>
+      <header className="sticky top-0 z-50">
         <Navbar></Navbar>
       </header>
       {/* main */}

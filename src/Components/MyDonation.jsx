@@ -8,16 +8,14 @@ const MyDonation = () => {
   // useEffect use for showing email wise data
 
   useEffect(() => {
-    fetch(
-      `https://assignment-10-server-pink-two.vercel.app/donations/${user?.email}`
-    )
+    fetch(`http://localhost:5000/donations/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setDonations(data))
       .catch((error) => console.error(error));
   }, []);
   donations;
   return (
-    <div className="min-h-screen bg-custom-gradient py-10">
+    <div className="min-h-screen  py-10">
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-700">
         My Donations ({donations.length})
       </h1>

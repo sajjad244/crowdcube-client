@@ -12,9 +12,7 @@ const MyCampaign = () => {
   useEffect(() => {
     // Fetch campaigns for the logged-in user
     if (user?.email) {
-      fetch(
-        `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${user.email}`
-      )
+      fetch(`http://localhost:5000/myCampaigns/${user.email}`)
         .then((res) => res.json())
         .then((data) => setLoadedCampaigns(data))
         .catch((error) => console.error(error));
@@ -34,12 +32,9 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/myCampaigns/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -95,13 +90,13 @@ const MyCampaign = () => {
                 <td className="border border-gray-400 px-4 py-2 flex gap-2">
                   <Link
                     to={`/updateCampaign/${campaign._id}`}
-                    className="btn btn-sm bg-purple-500 border-none"
+                    className="btn btn-sm bg-purple-500 border-none text-white"
                   >
                     Update
                   </Link>
                   <button
                     onClick={() => handleUserDelete(campaign._id)}
-                    className="btn btn-sm bg-red-500 border-none"
+                    className="btn btn-sm bg-red-500 border-none  text-white"
                   >
                     Delete
                   </button>

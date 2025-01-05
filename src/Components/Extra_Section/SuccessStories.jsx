@@ -29,9 +29,9 @@ const SuccessStories = () => {
   ];
 
   return (
-    <section className="bg-custom-gradient py-10">
+    <section className=" my-10">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-700">
+        <h2 className="text-3xl font-bold text-center mb-10 text-gray-700">
           Success Stories
         </h2>
         <div className="grid md:grid-cols-3 gap-8">

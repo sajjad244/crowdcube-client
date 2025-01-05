@@ -26,16 +26,13 @@ const UpdatePage = () => {
       deadline: deadline,
     };
 
-    fetch(
-      `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      }
-    )
+    fetch(`http://localhost:5000/myCampaigns/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    })
       .then((res) => res.json())
 
       .then((result) => {

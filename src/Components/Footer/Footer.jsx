@@ -3,6 +3,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaLinkedinIn,
+  FaGithub,
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -11,7 +12,7 @@ const Footer = () => {
       <div className="container mx-auto flex justify-around gap-8">
         {/*  */}
         <div>
-          <h2 className="text-lg font-bold text-white mb-4">About Crowdcube</h2>
+          <h2 className="text-lg font-bold text-white mb-4">Crowdcube</h2>
           <p className="text-sm ">
             Crowdcube is a platform where dreams turn into reality. <br /> Join
             us to support innovative ideas, creative projects, and impactful
@@ -20,7 +21,7 @@ const Footer = () => {
         </div>
 
         {/*  */}
-        <div>
+        <div id="footer">
           <h2 className="text-lg font-bold text-white mb-4">Connect With Us</h2>
           <p className="text-sm">Follow us on social media to stay updated.</p>
           <div className="flex space-x-4 mt-4">
@@ -35,6 +36,13 @@ const Footer = () => {
             </a>
             <a className="text-gray-400 hover:text-white transition">
               <FaLinkedinIn size={20} />
+            </a>
+            <a
+              className="text-gray-400 hover:text-white transition"
+              href="https://github.com/sajjad244?tab=repositories"
+              target="_blank"
+            >
+              <FaGithub size={20} />
             </a>
           </div>
         </div>

@@ -45,7 +45,7 @@ const RegisterForm = () => {
           email: email,
           photoURL: photoURL,
         };
-        fetch("https://assignment-10-server-pink-two.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -72,7 +72,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-custom-gradient flex items-center justify-center">
+    <div className="min-h-screen  flex items-center justify-center">
       <div className="bg-custom-gradient shadow-lg rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700">
           Register Form

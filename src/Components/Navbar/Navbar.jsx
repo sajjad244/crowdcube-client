@@ -1,47 +1,65 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import {Link, NavLink} from "react-router-dom";
 import {AuthContext} from "../../Layouts/AuthProvider";
-import {FaMoon, FaSun} from "react-icons/fa";
+
 import {Typewriter} from "react-simple-typewriter";
 
 const Navbar = () => {
   const {user, logout} = useContext(AuthContext);
 
   // State to manage the theme
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  // const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   // Change theme when the button is clicked
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  // const toggleTheme = () => {
+  //   const newTheme = theme === "light" ? "dark" : "light";
+  //   setTheme(newTheme);
+  //   document.documentElement.setAttribute("data-theme", newTheme);
+  //   localStorage.setItem("theme", newTheme);
+  // };
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  // }, [theme]);
   // State to manage the theme
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/allCampaigns">All Campaign</NavLink>
-      </li>
-      <li>
-        <NavLink to="/addCampaign">Add New Campaign</NavLink>
-      </li>
-      <li>
-        <NavLink to={`/myCampaign`}>My Campaign</NavLink>
-      </li>
-      <li>
-        <NavLink to="/myDonations">My Donations</NavLink>
-      </li>
+
+      {user && user?.email ? (
+        <>
+          <li>
+            <NavLink to="/allCampaigns">All Campaign</NavLink>
+          </li>
+          <li>
+            <NavLink to="/addCampaign">Add New Campaign</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myCampaign">My Campaign</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myDonations">My Donations</NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <a className="ml-1" href="#footer">
+              Contact
+            </a>
+          </li>
+          <li>
+            <a className="ml-1" href="#footer">
+              About us
+            </a>
+          </li>
+        </>
+      )}
     </>
   );
 
   return (
-    <div className="navbar">
+    <div className="navbar backdrop-blur-lg z-[100]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -117,28 +135,28 @@ const Navbar = () => {
             </div>
             <button
               onClick={logout}
-              className="btn btn-ghost font-serif text-lg"
+              className="btn btn-ghost text-gray-700 text-md"
             >
               Logout
             </button>
           </div>
         ) : (
-          <Link to="login" className="btn btn-ghost font-serif text-lg">
+          <Link to="login" className="btn btn-ghost text-gray-700  text-md">
             Login
           </Link>
         )}
         {/* register button */}
 
         {user && user?.email ? null : (
-          <Link to="/register" className="btn btn-ghost font-serif text-lg">
+          <Link to="/register" className="btn btn-ghost text-md text-gray-700">
             Register
           </Link>
         )}
         {/* Theme toggle icon */}
-        <button onClick={toggleTheme} className="btn btn-ghost text-lg ml-4">
-          {theme === "light" ? <FaMoon /> : <FaSun />}
-          {/* Change icon based on theme */}
-        </button>
+        {/* <button onClick={toggleTheme} className="btn btn-ghost text-lg ml-4">
+          {theme === "light" ? <FaMoon /> : <FaSun />} */}
+        {/* Change icon based on theme */}
+        {/* </button> */}
       </div>
     </div>
   );

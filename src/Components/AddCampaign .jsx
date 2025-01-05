@@ -31,7 +31,7 @@ const AddCampaign = () => {
     };
 
     //! send data to the server post method
-    fetch("https://assignment-10-server-pink-two.vercel.app/addCampaign", {
+    fetch("http://localhost:5000/addCampaign", {
       method: "POST",
       headers: {
         "content-type": "application/json",
