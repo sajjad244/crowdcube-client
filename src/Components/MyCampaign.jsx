@@ -12,7 +12,9 @@ const MyCampaign = () => {
   useEffect(() => {
     // Fetch campaigns for the logged-in user
     if (user?.email) {
-      fetch(`http://localhost:5000/myCampaigns/${user.email}`)
+      fetch(
+        `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => setLoadedCampaigns(data))
         .catch((error) => console.error(error));
@@ -32,9 +34,12 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myCampaigns/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://assignment-10-server-pink-two.vercel.app/myCampaigns/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

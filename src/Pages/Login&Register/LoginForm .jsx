@@ -29,7 +29,9 @@ const LoginForm = () => {
           lastSignInTime,
         };
 
-        fetch(`http://localhost:5000/users/${email}`);
+        fetch(
+          `https://assignment-10-server-pink-two.vercel.app/users/${email}`
+        );
 
         navigate(location?.state || "/");
         toast.success(`Welcome successfully logged in.`);

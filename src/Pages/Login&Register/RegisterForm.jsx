@@ -45,7 +45,7 @@ const RegisterForm = () => {
           email: email,
           photoURL: photoURL,
         };
-        fetch("http://localhost:5000/users", {
+        fetch("https://assignment-10-server-pink-two.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

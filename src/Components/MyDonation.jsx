@@ -8,7 +8,9 @@ const MyDonation = () => {
   // useEffect use for showing email wise data
 
   useEffect(() => {
-    fetch(`http://localhost:5000/donations/${user?.email}`)
+    fetch(
+      `https://assignment-10-server-pink-two.vercel.app/donations/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setDonations(data))
       .catch((error) => console.error(error));
